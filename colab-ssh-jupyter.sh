@@ -1,13 +1,12 @@
 # create an account on ngrok is not already and copy the authtoken and 
 echo "password is colab12"
-password="colab12"
 wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
 unzip ngrok-stable-linux-amd64.zip
 authtoken=$1
 ./ngrok authtoken $authtoken  #for example ZT64bWYnXTAsJej4FNFTdsjhsuAQqKqZHn2Sh4g2sfAD
 ./ngrok tcp 22 &
 apt-get install -qq -o=Dpkg::Use-Pty=0 openssh-server pwgen > /dev/null
-echo root:$password | chpasswd
+echo root:colab12 | chpasswd
 mkdir -p /var/run/sshd
 echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
 echo "LD_LIBRARY_PATH=/usr/lib64-nvidia" >> /root/.bashrc && echo "export LD_LIBRARY_PATH" >> /root/.bashrc
